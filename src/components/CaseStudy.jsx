@@ -55,7 +55,7 @@ const layouts = {
 const Gallery = ({ items, layout = 'desktop' }) => (
   <div className={`grid gap-6 ${layouts[layout]}`}>
     {items.map((img, i) => (
-      <figure key={i} className={`space-y-2 w-full ${layout === 'phone' ? 'max-w-[300px]' : ''}`}>
+      <figure key={i} className={`space-y-2 w-full ${layout === 'phone' ? 'max-w-[300px]' : ''} ${img.wide && layout === 'desktop' ? 'md:col-span-2' : ''}`}>
         <img src={img.src} alt={img.caption || ''} loading="lazy" className="w-full rounded-2xl border border-white/10 bg-white/5" />
         {img.caption && <figcaption className="text-xs font-mono text-white/50 uppercase tracking-wider">{img.caption}</figcaption>}
       </figure>
@@ -224,6 +224,17 @@ const CaseStudy = ({ slug }) => {
             <Card className="space-y-5">
               {study.usabilityIntro && <p className="text-sm md:text-base text-white/80 font-light leading-relaxed">{study.usabilityIntro}</p>}
               <Bullets items={study.usabilityTesting} />
+            </Card>
+          </Reveal>
+        )}
+
+        {/* Audit & validation */}
+        {study.audit && (
+          <Reveal className="space-y-6">
+            <SectionTitle index={num()}>Audit &amp; validation</SectionTitle>
+            <Card className="space-y-5">
+              <p className="text-sm md:text-base text-white/80 font-light leading-relaxed">{study.audit.intro}</p>
+              <Bullets items={study.audit.items} />
             </Card>
           </Reveal>
         )}

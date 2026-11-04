@@ -3,6 +3,13 @@ import interviewiqBanner from '../assets/projects/interviewiq.jpg';
 import synthesisBanner from '../assets/projects/synthesis.jpg';
 import bitebuddyBanner from '../assets/projects/bitebuddy.jpg';
 import welthosBanner from '../assets/projects/welthos.jpg';
+import agentplaceBanner from '../assets/projects/agentplace.jpg';
+import agentplace_hero from '../assets/cases/agentplace-hero.webp';
+import agentplace_before_after from '../assets/cases/agentplace-before-after.webp';
+import agentplace_templates from '../assets/cases/agentplace-templates.webp';
+import agentplace_features from '../assets/cases/agentplace-features.webp';
+import agentplace_control from '../assets/cases/agentplace-control.webp';
+import agentplace_pricing from '../assets/cases/agentplace-pricing.webp';
 import bite_buddy_delivery from '../assets/cases/bite-buddy-delivery.webp';
 import bite_buddy_dining from '../assets/cases/bite-buddy-dining.webp';
 import bite_buddy_profile from '../assets/cases/bite-buddy-profile.webp';
@@ -382,6 +389,84 @@ export const caseStudies = [
       'Simple layouts improve usability more than complex visuals',
       'Early wireframing caught structural issues before UI',
       'Clear navigation and data hierarchy are crucial in dashboards',
+    ],
+  },
+  {
+    slug: 'agentplace-redesign',
+    title: 'Agentplace Redesign',
+    eyebrow: 'CASE STUDY · WEBSITE REDESIGN',
+    banner: agentplaceBanner,
+    summary:
+      'A self-initiated redesign of Agentplace\'s website, a platform for building AI agents that answer questions, book appointments and take payments. The redesign puts the product up front and makes the owner\'s control over the agent visible, so a small business can trust it before signing up.',
+    meta: [
+      { label: 'Role', value: 'Product / UX Designer' },
+      { label: 'Duration', value: '14 days' },
+      { label: 'Type', value: 'Self-initiated redesign (marketing site)' },
+      { label: 'Tool', value: 'Figma' },
+    ],
+    figma:
+      'https://www.figma.com/design/jo8gHHr16P0FsjLhuIXpmA/Attira?node-id=183-374&t=1tJbwqs2fw5Nlti8-1',
+    overview: [
+      'Agentplace\'s site explains what its agents do but does not let a visitor try one, see one work, or see how an owner stays in control. The product prompt sits several scrolls below the fold, five of six feature claims are bare headings, and the agent books appointments and takes payments with no visible approval, handoff or audit trail. A visitor is asked to trust an agent with customers and money on words alone.',
+      'The goal was to let visitors try the product in seconds and see the control layer before signing up.',
+    ],
+    targetUsers: [
+      'Owners of small service businesses (studios, repair crews, clinics) with no technical team',
+      'Solo operators who need bookings and support covered outside working hours',
+      'Freelancers and agencies setting up agents for their clients',
+      'Non-technical founders who want an agent live this week',
+    ],
+    goalTitle: 'The goal',
+    goalText:
+      'Make three things true for any first-time visitor: they can try it (prompt in the hero), believe it (every capability demonstrated), and stay in control (confirm, handoff and activity log shown on the page).',
+    persona: {
+      name: 'Maya Torres',
+      sub: '34 · Owner, boutique skincare studio. Proto-persona based on Agentplace\'s target audience, to be validated with real owners.',
+      goals: [
+        'Stop missing booking requests after hours',
+        'Know exactly what the agent will and will not do',
+        'Be live without hiring a developer',
+      ],
+      pains: [
+        'Worried an agent will say or charge something wrong',
+        'Cannot tell what "AI credits" will cost her per month',
+        'Marketing pages describe features she cannot picture working',
+      ],
+    },
+    flow: [
+      'Visitor lands on a hero with the prompt and example chips',
+      'Types or taps a business type ("Skincare studio in Austin")',
+      'Browses templates and opens a preview before committing',
+      'Explores features through a demo accordion',
+      'Reviews "You stay in control": confirm-before-booking, human handoff, activity log',
+      'Checks pricing with an estimate in conversations per month',
+      'Signs up with the chosen template or prompt carried over',
+    ],
+    finalUI: [
+      { src: agentplace_hero, caption: 'Hero with prompt, example chips and "As seen in" press logos' },
+      { src: agentplace_before_after, caption: 'Hero, before and after: a normal website next to the same business with an AI agent' },
+      { src: agentplace_templates, caption: 'Template cards and preview modal' },
+      { src: agentplace_features, caption: 'Feature accordion with demo loops' },
+      { src: agentplace_control, caption: '"You stay in control": confirm before booking, handoff to human, activity log', wide: true },
+      { src: agentplace_pricing, caption: 'Pricing with conversation estimate', wide: true },
+    ],
+    finalUILayout: 'desktop',
+    audit: {
+      intro:
+        'I audited the site as a first-time owner and scored every section against three questions: can I try it, can I believe it, can I stay in control. Each finding became a fix:',
+      items: [
+        'Moved the prompt into the hero, with example chips and an "As seen in" label on the press logos',
+        'Made template cards static with outcome labels, plus a preview modal and reduced-motion support',
+        'Gave every feature a one-line description and its own demo loop',
+        'Added a control section built from three AX moments: pre-action checkpoint, handoff to a human, activity log',
+        'Translated credits into conversations per month and stated what happens at the limit',
+      ],
+    },
+    learnings: [
+      'For agent products, the marketing page and the product share one job: making autonomy feel safe',
+      'Show a control layer early. It answers the biggest objection before it is raised',
+      'Demonstrated capability beats described capability',
+      'Translate system units (credits) into outcomes people can plan around',
     ],
   },
 ];

@@ -6,6 +6,7 @@ import designforgeBanner from '../assets/projects/designforge.jpg';
 import interviewiqBanner from '../assets/projects/interviewiq.jpg';
 import synthesisBanner from '../assets/projects/synthesis.jpg';
 import bitebuddyBanner from '../assets/projects/bitebuddy.jpg';
+import agentplaceBanner from '../assets/projects/agentplace.jpg';
 import welthosBanner from '../assets/projects/welthos.jpg';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -56,6 +57,15 @@ const projectsData = [
     tags: ["Dashboard UI", "Accessibility", "Handoff"],
     stat: "Dev Handoff",
     link: "#/case-study/welthos"
+  },
+  {
+    title: "Agentplace Redesign",
+    banner: agentplaceBanner,
+    category: "Website Redesign • UX Case Study",
+    description: "A redesign that lets visitors try an AI agent in seconds and see how owners stay in control.",
+    tags: ["Figma", "UX Audit", "AX"],
+    stat: "Try It In Seconds",
+    link: "#/case-study/agentplace-redesign"
   }
 ];
 
