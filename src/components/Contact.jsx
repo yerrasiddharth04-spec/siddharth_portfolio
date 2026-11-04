@@ -1,6 +1,8 @@
 import React, { useRef, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
+const CONTACT_ENDPOINT = 'https://formsubmit.co/ajax/yerrasiddharth04@gmail.com';
+
 const Contact = () => {
   const ref = useRef(null);
   
@@ -30,8 +32,11 @@ const Contact = () => {
     }));
   };
 
-  // Handle form submission logic
-  const handleSubmit = (e) => {
+  const [status, setStatus] = useState('idle'); // idle | sending | sent | error
+
+  // Handle form submission: delivers the message straight to the inbox, with the
+  // visitor's address set as reply-to so a reply goes back to them.
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!formData.permission) {
@@ -39,12 +44,29 @@ const Contact = () => {
       return;
     }
 
-    // Opens the visitor's email app with the message pre-filled, addressed to Yerra Siddharth.
-    const subject = encodeURIComponent(`Portfolio enquiry from ${formData.firstName} ${formData.lastName}`.trim());
-    const body = encodeURIComponent(`${formData.message}\n\n— ${formData.firstName} ${formData.lastName}\n${formData.email}`);
-    window.location.href = `mailto:yerrasiddharth04@gmail.com?subject=${subject}&body=${body}`;
-    
-    setFormData({ firstName: '', lastName: '', email: '', message: '', permission: false });
+    setStatus('sending');
+    try {
+      const res = await fetch(CONTACT_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          name: `${formData.firstName} ${formData.lastName}`.trim(),
+          email: formData.email,
+          message: formData.message,
+          _replyto: formData.email,
+          _subject: `Portfolio message from ${formData.firstName} ${formData.lastName}`.trim(),
+          _captcha: 'false',
+          _template: 'table'
+        })
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || data.success === 'false' || data.success === false) throw new Error('send failed');
+
+      setStatus('sent');
+      setFormData({ firstName: '', lastName: '', email: '', message: '', permission: false });
+    } catch {
+      setStatus('error');
+    }
   };
 
   return (
@@ -172,14 +194,19 @@ const Contact = () => {
                   
                   <button 
                     type="submit" 
-                    className="px-8 py-3.5 rounded bg-red-600 text-white font-bold uppercase tracking-widest text-xs flex items-center justify-center gap-3 hover:bg-red-700 transition-all duration-300 group whitespace-nowrap shadow-[0_0_20px_rgba(229,9,20,0.6)] hover:scale-105"
+                    disabled={status === 'sending'}
+                    className="disabled:opacity-60 disabled:cursor-wait px-8 py-3.5 rounded bg-red-600 text-white font-bold uppercase tracking-widest text-xs flex items-center justify-center gap-3 hover:bg-red-700 transition-all duration-300 group whitespace-nowrap shadow-[0_0_20px_rgba(229,9,20,0.6)] hover:scale-105"
                   >
-                    Send Message
+                    {status === 'sending' ? 'Sending...' : 'Send Message'}
                     <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                     </svg>
                   </button>
                 </div>
+                <p role="status" aria-live="polite" className={`text-sm ${status === 'error' ? 'text-red-400' : 'text-green-400'}`}>
+                  {status === 'sent' && "Message sent. I'll reply to your email soon."}
+                  {status === 'error' && 'Could not send your message. Please try again or email yerrasiddharth04@gmail.com.'}
+                </p>
               </div>
             </div>
           </form>

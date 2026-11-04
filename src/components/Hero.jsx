@@ -310,7 +310,7 @@ const Hero = () => {
       ></div>
 
       {/* --- NETFLIX-THEMED DEVELOPER NAVBAR --- */}
-      <header className="absolute top-0 left-0 z-50 w-full max-w-7xl mx-auto pl-4 pr-16 sm:pl-6 sm:pr-20 md:pl-12 md:pr-24 py-4 sm:py-6 flex items-center justify-between gap-2 pointer-events-auto">
+      <header className="absolute top-0 left-0 z-50 w-full max-w-7xl mx-auto pl-4 pr-16 sm:pl-6 sm:pr-20 md:px-12 py-4 sm:py-6 flex items-center justify-between gap-2 pointer-events-auto">
         <div className="text-sm sm:text-lg lg:text-xl xl:text-2xl font-black text-red-600 tracking-tighter flex items-center gap-2 drop-shadow-[0_2px_15px_rgba(229,9,20,0.9)] whitespace-nowrap">
           YERRA SIDDHARTH<span className="w-1.5 h-1.5 rounded-full bg-white inline-block shrink-0"></span>
         </div>
@@ -324,6 +324,12 @@ const Hero = () => {
           <a href="#projects" className="hover:text-red-500 transition-colors">Projects</a>
           <a href="#contact" className="hover:text-red-500 transition-colors">Contact</a>
         </nav>
+        <a
+          href="#contact"
+          className="px-3 sm:px-5 py-2 rounded bg-red-600 hover:bg-red-700 text-white font-bold text-[10px] sm:text-xs uppercase tracking-widest transition-all duration-300 shadow-[0_0_20px_rgba(229,9,20,0.6)] hover:scale-105 active:scale-95 shrink-0"
+        >
+          Hire Me
+        </a>
       </header>
     </section>
   );
